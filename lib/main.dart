@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'strings.dart';
+
 
 void main() => runApp(new MyApp());
 
@@ -22,15 +24,35 @@ class MyApp extends StatelessWidget {
     );*/
 
    return new MaterialApp(
-     title: 'Startup Name Generator',
+     title: Strings.appTitle,
      theme: new ThemeData(
        primaryColor: Colors.white,
      ),
-     home: new RandomWords(),
+     //home: new RandomWords(),//无限滚动的list单词对
+     home: new GHFlutter(),   //自定义的组件
    );
   }
 }
 
+class GHFlutter extends StatefulWidget{
+  @override
+  createState() => new GHFlutterState();
+}
+
+class GHFlutterState extends State<GHFlutter>{
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text(Strings.appTitle),
+      ),
+      body: new Center(   //屏幕中心显示
+        child: new Text(Strings.appTitle),
+      ),
+    );
+  }
+
+}
 
 //随机单词对界面
 class RandomWords extends StatefulWidget{
@@ -55,7 +77,7 @@ class RandomWordsState extends State<RandomWords>{
 
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Startup Name Generator'),
+        title: new Text(Strings.appTitle),
         actions: <Widget>[
           new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
         ],
