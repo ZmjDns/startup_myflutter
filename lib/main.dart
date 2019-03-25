@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'strings.dart';
 
+import 'myappbar.dart';
+
 
 void main() => runApp(new MyApp());
 
@@ -51,7 +53,6 @@ class GHFlutterState extends State<GHFlutter>{
       ),
     );
   }
-
 }
 
 //随机单词对界面
