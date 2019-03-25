@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
 }
 
 
+//随机单词对界面
 class RandomWords extends StatefulWidget{
   @override
   createState() => new RandomWordsState();
