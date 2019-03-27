@@ -56,8 +56,73 @@ void test2(){
     enableFlag(bold: true,hidden: false);
 }
 
-
-
-
+  //Future （耗时）
+  void test3(){
+    Future.delayed(new Duration(seconds: 2),(){
+      return "hi word!";
+    }).then((data){
+      print(data);
+    });
+  }
+  //异步中发生错误，在catchError中捕获
+  void test4(){
+    Future.delayed(new Duration(seconds: 2),(){
+      throw AssertionError("Error");
+    }).then((data){
+      //执行成功
+      print("success");
+    }).catchError((e){
+      //执行失败，捕获异常
+      print(e);
+    });
+  }
+  //在then的回调函数中获取异常
+  void test5(){
+    Future.delayed(new Duration(seconds: 2),(){
+      throw AssertionError("Error");
+    }).then((data){
+      print("success");
+    },onError: (e){
+      print(e);
+    });
+  }
+  //Future.whenComplete
+  void test6(){
+    Future.delayed(new Duration(seconds: 2),(){
+      throw AssertionError("Error");
+    }).then((data){
+      //执行成功
+      print(data);
+    }).catchError((e){
+      print(e);
+    }).whenComplete((){
+      //无论成功或失败都会走这里
+      print("Thread is over");
+    });
+  }
+  //Future.wait
+  //有时候,我们需要等待多个异步任务都执行结束后才进行一些操作
+  //比如我们有一个界面，需要先分别从两个网络接口获取数据，获取成功后，
+  //我们需要将两个接口数据进行特定的处理后再显示到UI界面上，应该怎么做？
+  //答案是Future.wait，它接受一个Future数组参数，只有数组中所有Future都执行成功后，才会触发then的成功回调，
+  //只要有一个Future执行失败，就会触发错误回调。
+  //下面，我们通过模拟Future.delayed 来模拟两个数据获取的异步任务，等两个异步任务都执行成功时，将两个异步任务的结果拼接打印出来
+  void tese7(){
+    Future.wait([
+      //2秒后返回结果
+      Future.delayed(new Duration(seconds: 2),(){
+        return("hello");
+      }),
+      //get the result after 4 seconds
+      Future.delayed(new Duration(seconds: 4),(){
+        return "word";
+      })
+    ]).then((results){
+      print(results[0] + results[1]);
+    }).catchError((e){
+      print(e);
+    });
+  }
+  //Async/await
 }
 
