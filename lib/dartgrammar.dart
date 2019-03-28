@@ -124,5 +124,85 @@ void test2(){
     });
   }
   //Async/await
+  //如果代码中有大量异步逻辑，并且出现大量异步任务依赖其它异步任务的结果时，必然会出现Future.then回调中套回调情况。
+  //举个例子，比如现在有个需求场景是用户先登录，登录成功后会获得用户Id，然后通过用户Id，再去请求用户个人信息，获取到用户个人信息后，
+  //为了使用方便，我们需要将其缓存在本地文件系统，代码如下：
+
+  void test8(){
+    //分别定义各个任务
+    Future<String> login(String name,String password){
+      //...
+      //登陆
+    };
+
+    Future<String> getUserInfo(String id){
+      //获取用户信息
+    }
+
+    Future<String> saveUserInfo(String userInfo){
+      //保存用户信息
+    }
+
+    //接下来，执行整个流程任务,该过程被称为     回调地域
+    login("Alice", "123").then((id){
+      //登陆成功后通过ID获取用户信息
+      getUserInfo(id).then((userInfo){
+        //获取用户信息后保存
+        saveUserInfo(userInfo).then((data){
+          //保存用户信息
+        });
+      });
+    });
+
+
+    //使用Future消除callBack hell（回调地域）
+    login("Alice", "123").then((id){
+      return getUserInfo(id);
+    }).then((userInfo){
+      return saveUserInfo(userInfo);
+    }).then((e){
+
+    }).catchError((e){
+      print(e);
+    });
+
+
+    //使用async/await消除 callBack hell
+    task() async{
+      try{
+        String id = await login("Alice", "123");
+        String userInfo = await getUserInfo(id);
+        await saveUserInfo(userInfo);
+        //执行接下来的操作
+      }catch(e){//异常捕获
+        print(e);
+      }
+    }
+  }
+
+  //Stream
+  void test9(){
+    Stream.fromFutures([
+      //1秒后返回结果
+      Future.delayed(new Duration(seconds: 1),(){
+        return"hello 1";
+      }),
+      //抛出一个异常
+      Future.delayed(new Duration(seconds: 2),(){
+        throw AssertionError("Error");
+      }),
+      //3秒返回结果
+      Future.delayed(new Duration(seconds: 3),(){
+        return "hello 3";
+      })
+    ]).listen((data){
+      print(data);
+    },onError: (e){
+      print(e.message);
+    },onDone: (){
+
+    });
+  }
+
 }
 
