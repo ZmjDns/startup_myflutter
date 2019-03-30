@@ -73,9 +73,6 @@ class _MyHomePageState extends State<MyHomePage>{
 
 
 
-
-
-
 //自己写的以前的app
 class MyApp extends StatelessWidget {
   @override
