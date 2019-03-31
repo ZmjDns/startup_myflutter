@@ -69,7 +69,21 @@ class _MyHomePageState extends State<MyHomePage>{
   }
 }
 
-
+//路由管理
+//新建一个路由（界面）
+class NewRoute extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: new AppBar(
+        title: Text(Strings.newRoute),
+      ),
+      body: Center(
+        child: Text("this is new route"),
+      ),
+    );
+  }
+}
 
 
 
