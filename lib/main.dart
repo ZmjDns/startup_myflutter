@@ -78,6 +78,7 @@ class NewRoute extends StatelessWidget{
     return Scaffold(
       appBar: new AppBar(
         title: Text(Strings.newRoute),
+
       ),
       body: Center(
         child: Text("this is new route"),
