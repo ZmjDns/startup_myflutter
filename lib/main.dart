@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'strings.dart';
 
-import 'myappbar.dart';
-
 
 
 void main() => runApp(new MyApp1());
@@ -56,6 +54,17 @@ class _MyHomePageState extends State<MyHomePage>{
               "$_counter",
               style: Theme.of(context).textTheme.display1,
             ),
+            FlatButton(                           //此按钮是进入下一个路由的入口
+              child: Text("open new route"),
+              textColor: Colors.blue,
+              onPressed: (){
+                //导航到新路由
+                Navigator.push(context,
+                  new MaterialPageRoute(builder: (context){
+                    return new NewRoute();
+                  }));
+              },
+            ),
           ],
         ),
       ),
@@ -63,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage>{
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: new Icon(Icons.add),
-
       ),
     );
 
@@ -78,7 +86,6 @@ class NewRoute extends StatelessWidget{
     return Scaffold(
       appBar: new AppBar(
         title: Text(Strings.newRoute),
-
       ),
       body: Center(
         child: Text("this is new route"),
