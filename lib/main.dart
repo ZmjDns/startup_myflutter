@@ -67,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage>{
 //                  new MaterialPageRoute(builder: (context){
 //                    return new NewRoute();
 //                  }));
+
               Navigator.pushNamed(context, "new_page");
               },
             ),
