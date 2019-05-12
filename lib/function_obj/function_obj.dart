@@ -16,8 +16,10 @@ void main(){
 void printHello(){
   print("Hello");
 }
-
-List listTimes(List list,String times(String)){
+/**
+ *
+ */
+List listTimes(List list,String times(str)){
   for(var i = 0; i < list.length; i++){
     list[i] = times(list[i]);
   }
