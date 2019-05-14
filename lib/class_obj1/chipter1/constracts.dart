@@ -13,8 +13,10 @@ class Person{
   int age;
   final String gender = "aa";
 
+  //构造方法1
   Person(this.name,this.age);
 
+  //构造方法2
   Person.withNme(String name){
     this.name = name;
   }
