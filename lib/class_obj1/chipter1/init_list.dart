@@ -13,7 +13,7 @@ class Person{
   final String gender;
 
   //构造方法1
-  Person(this.name,this.age,this.gender);
+  Person(this.gender,this.name,this.age);
 
 //  //构造方法2
 //  Person.withNme(String name){

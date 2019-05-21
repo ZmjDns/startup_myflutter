@@ -6,7 +6,11 @@
 class Person{
   String name;
   int age;
-  final String address = "aderss";
+  final String address;
+
+  Person(this.name,this.age,this.address);
+
+  Person.withName(this.name):this.address="";
 
   void work(){
     print("Name is $name ,Age is $age,he is working");
