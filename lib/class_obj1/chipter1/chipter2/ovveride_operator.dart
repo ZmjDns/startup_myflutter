@@ -30,7 +30,6 @@ class Person{
     if("age" == str){
       return this.age;
     }
-
     return 0;
   }
 
