@@ -1,17 +1,5 @@
 import 'dart:math';
 
-main () {
-  var a = 5 ~/ 2;
-
-  print("整除5 ~/ 2 = $a");
-  var p = Point(2,3);
-  p.y = 3;
-  assert(p.y == 3);
-
-  p?.y = 4;//判空
-}
-
-
 class Point{
   num x,y;
   num distanceFromOrigin;
@@ -73,7 +61,7 @@ class Logger {
     if(_cache.containsKey(name)){
       return _cache[name];
     }else{
-      final logger = Logger(name);
+      final logger = Logger._interval(name);
       _cache[name] = logger;
       return logger;
     }
