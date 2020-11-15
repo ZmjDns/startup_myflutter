@@ -32,6 +32,7 @@ class Point{
 }
 
 class ImmutablePoint {
+  //常量构造函数，用const来创建编译时常量，创建两个完全一样的编译时常量将产生同一个实例
   static final origin = const ImmutablePoint(0,0);
   final num x,y;
   const ImmutablePoint(this.x,this.y);
